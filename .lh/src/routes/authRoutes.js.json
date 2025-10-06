@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/routes/authRoutes.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1759684888310,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1759685620607,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n const express = require('express');\n const router = express.Router();\n const authController = require('../controllers/authController');\n+const authController = require('../controllers/authController'); // Corrigindo o caminho\n \n // Rota para login de usuário\n router.post('/login', authController.login);\n \n"
+                },
+                {
+                    "date": 1759693758252,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,12 @@\n const express = require('express');\n const router = express.Router();\n+const authController = require('../controllers/authController'); // Corrigindo o caminho\n const authController = require('../controllers/authController');\n-const authController = require('../controllers/authController'); // Corrigindo o caminho\n \n // Rota para login de usuário\n router.post('/login', authController.login);\n \n+// Rota para registrar um novo usuário\n+router.post('/register', authController.register);\n+\n module.exports = router;\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1759684888310,
+            "name": "Commit-0",
+            "content": "const express = require('express');\nconst router = express.Router();\nconst authController = require('../controllers/authController');\n\n// Rota para login de usuário\nrouter.post('/login', authController.login);\n\nmodule.exports = router;"
+        }
+    ]
+}

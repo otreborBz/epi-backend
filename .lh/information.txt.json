@@ -1,0 +1,26 @@
+{
+    "sourceFile": "information.txt",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1759679972565,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1759679981688,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-#\n\\ No newline at end of file\n+#Iniciar projeto\n"
+                },
+                {
+                    "date": 1759679989599,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,2 @@\n+#Iniciar projeto\n+ n\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1759679972565,
+            "name": "Commit-0",
+            "content": "#"
+        }
+    ]
+}

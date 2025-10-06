@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/controllers/entregaController.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1759702989977,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1759703551749,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,7 +58,33 @@\n     return res.status(400).json({ error: error.message || 'Erro interno do servidor ao registrar entrega.' });\n   }\n };\n \n+/**\n+ * Busca todas as entregas de EPIs para um colaborador específico.\n+ */\n+const getEntregasByColaborador = async (req, res) => {\n+  try {\n+    const { colaboradorId } = req.params;\n+\n+    if (!colaboradorId) {\n+      return res.status(400).json({ error: 'O ID do colaborador é obrigatório.' });\n+    }\n+\n+    const entregasSnapshot = await db.collection('entregas').where('colaboradorId', '==', colaboradorId).get();\n+\n+    const entregas = [];\n+    entregasSnapshot.forEach(doc => {\n+      entregas.push({ id: doc.id, ...doc.data() });\n+    });\n+\n+    return res.status(200).json(entregas);\n+  } catch (error) {\n+    console.error('Erro ao buscar entregas por colaborador:', error);\n+    return res.status(500).json({ error: 'Erro interno do servidor ao buscar entregas.' });\n+  }\n+};\n+\n module.exports = {\n   createEntrega,\n+  getEntregasByColaborador,\n };\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1759702989977,
+            "name": "Commit-0",
+            "content": "const { db } = require('../config/firebase');\n\n/**\n * Registra a entrega de um EPI a um colaborador e atualiza o estoque.\n */\nconst createEntrega = async (req, res) => {\n  try {\n    const { colaboradorId, epiId, quantidadeEntregue } = req.body;\n\n    if (!colaboradorId || !epiId || !quantidadeEntregue || Number(quantidadeEntregue) <= 0) {\n      return res.status(400).json({\n        error: 'Os campos colaboradorId, epiId e uma quantidadeEntregue válida são obrigatórios.',\n      });\n    }\n\n    const epiRef = db.collection('epis').doc(epiId);\n    const colaboradorRef = db.collection('colaboradores').doc(colaboradorId);\n\n    // Usar uma transação para garantir a consistência dos dados (atomicidade)\n    const novaEntrega = await db.runTransaction(async (transaction) => {\n      const epiDoc = await transaction.get(epiRef);\n      if (!epiDoc.exists) {\n        // Lança um erro que será pego pelo bloco catch\n        throw new Error('EPI não encontrado.');\n      }\n\n      const colaboradorDoc = await transaction.get(colaboradorRef);\n      if (!colaboradorDoc.exists) {\n        throw new Error('Colaborador não encontrado.');\n      }\n\n      const epiData = epiDoc.data();\n      const novaQuantidadeEstoque = epiData.quantidade - Number(quantidadeEntregue);\n\n      if (novaQuantidadeEstoque < 0) {\n        throw new Error(`Estoque insuficiente. Quantidade disponível: ${epiData.quantidade}.`);\n      }\n\n      // 1. Atualiza o estoque do EPI\n      transaction.update(epiRef, { quantidade: novaQuantidadeEstoque });\n\n      // 2. Cria o registro da entrega\n      const entregaData = {\n        colaboradorId,\n        epiId,\n        quantidadeEntregue: Number(quantidadeEntregue),\n        dataEntrega: new Date().toISOString(),\n      };\n      const entregaRef = db.collection('entregas').doc();\n      transaction.set(entregaRef, entregaData);\n\n      return { id: entregaRef.id, ...entregaData };\n    });\n\n    return res.status(201).json(novaEntrega);\n  } catch (error) {\n    // Retorna a mensagem de erro específica da transação ou um erro genérico\n    return res.status(400).json({ error: error.message || 'Erro interno do servidor ao registrar entrega.' });\n  }\n};\n\nmodule.exports = {\n  createEntrega,\n};"
+        }
+    ]
+}

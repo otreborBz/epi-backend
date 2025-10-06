@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/authRoutes.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1759684179991,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1759684299980,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,9 @@\n+const express = require('express');\n+const router = express.Router();\n+const authController = require('../controllers/authController');\n+const authController = require('./authController');\n+\n+// Rota para login de usuário\n+router.post('/login', authController.login);\n+\n+module.exports = router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1759684308980,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n const express = require('express');\n const router = express.Router();\n const authController = require('../controllers/authController');\n-const authController = require('./authController');\n \n // Rota para login de usuário\n router.post('/login', authController.login);\n \n"
+                }
+            ],
+            "date": 1759684179991,
+            "name": "Commit-0",
+            "content": "const express = require('express');\nconst router = express.Router();\nconst authController = require('../controllers/authController');\n\n// Rota para login de usuário\nrouter.post('/login', authController.login);\n\nmodule.exports = router;"
+        }
+    ]
+}

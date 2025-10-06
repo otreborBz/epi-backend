@@ -1,0 +1,18 @@
+{
+    "sourceFile": "package.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1759504613129,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1759504613129,
+            "name": "Commit-0",
+            "content": "{\n  \"name\": \"epi-backend\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"src/index.js\",\n  \"scripts\": {\n    \"start\": \"node src/index.js\",\n    \"dev\": \"nodemon src/index.js\"\n  },\n  \"keywords\": [],\n  \"author\": \"\",\n  \"license\": \"ISC\",\n  \"dependencies\": {\n    \"cors\": \"^2.8.5\",\n    \"dotenv\": \"^17.2.3\",\n    \"express\": \"^5.1.0\",\n    \"express-rate-limit\": \"^8.1.0\",\n    \"firebase-admin\": \"^13.5.0\",\n    \"helmet\": \"^8.1.0\",\n    \"joi\": \"^18.0.1\",\n    \"morgan\": \"^1.10.1\"\n  },\n  \"devDependencies\": {\n    \"nodemon\": \"^3.1.10\"\n  }\n}\n"
+        }
+    ]
+}

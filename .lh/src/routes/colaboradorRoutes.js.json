@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/routes/colaboradorRoutes.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1759701279768,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1759701279768,
+            "name": "Commit-0",
+            "content": "const express = require('express');\nconst router = express.Router();\nconst colaboradorController = require('../controllers/colaboradorController');\n\n// Rota para criar um novo colaborador\nrouter.post('/', colaboradorController.createColaborador);\n\n// Rota para buscar todos os colaboradores\nrouter.get('/', colaboradorController.getAllColaboradores);\n\n// Rota para buscar um colaborador por ID\nrouter.get('/:id', colaboradorController.getColaboradorById);\n\n// Rota para atualizar um colaborador\nrouter.put('/:id', colaboradorController.updateColaborador);\n\n// Rota para excluir um colaborador\nrouter.delete('/:id', colaboradorController.deleteColaborador);\n\nmodule.exports = router;"
+        }
+    ]
+}

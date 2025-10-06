@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/controllers/epiController.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1759699050781,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1759699670922,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,7 +30,25 @@\n     return res.status(500).json({ error: 'Erro interno do servidor ao criar EPI.' });\n   }\n };\n \n+/**\n+ * Busca todos os Equipamentos de Proteção Individual (EPIs) no Firestore.\n+ */\n+const getAllEpis = async (req, res) => {\n+  try {\n+    const episSnapshot = await db.collection('epis').get();\n+    const epis = [];\n+    episSnapshot.forEach(doc => {\n+      epis.push({ id: doc.id, ...doc.data() });\n+    });\n+    return res.status(200).json(epis);\n+  } catch (error) {\n+    console.error('Erro ao buscar EPIs:', error);\n+    return res.status(500).json({ error: 'Erro interno do servidor ao buscar EPIs.' });\n+  }\n+};\n+\n module.exports = {\n   createEpi,\n+  getAllEpis,\n };\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1759699904395,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,8 +47,54 @@\n     return res.status(500).json({ error: 'Erro interno do servidor ao buscar EPIs.' });\n   }\n };\n \n+/**\n+ * Atualiza um EPI existente no Firestore.\n+ */\n+const updateEpi = async (req, res) => {\n+  try {\n+    const { id } = req.params;\n+    const data = req.body;\n+\n+    if (!id) {\n+      return res.status(400).json({ error: 'O ID do EPI é obrigatório.' });\n+    }\n+\n+    const epiRef = db.collection('epis').doc(id);\n+    const doc = await epiRef.get();\n+\n+    if (!doc.exists) {\n+      return res.status(404).json({ error: 'EPI não encontrado.' });\n+    }\n+\n+    await epiRef.update(data);\n+\n+    return res.status(200).json({ id, ...data });\n+  } catch (error) {\n+    console.error('Erro ao atualizar EPI:', error);\n+    return res.status(500).json({ error: 'Erro interno do servidor ao atualizar EPI.' });\n+  }\n+};\n+\n+/**\n+ * Exclui um EPI do Firestore.\n+ */\n+const deleteEpi = async (req, res) => {\n+  try {\n+    const { id } = req.params;\n+\n+    await db.collection('epis').doc(id).delete();\n+\n+    return res.status(200).json({ message: 'EPI excluído com sucesso.' });\n+  } catch (error) {\n+    console.error('Erro ao excluir EPI:', error);\n+    return res.status(500).json({ error: 'Erro interno do servidor ao excluir EPI.' });\n+  }\n+};\n+\n module.exports = {\n   createEpi,\n   getAllEpis,\n+  updateEpi,\n+  deleteEpi,\n };\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1759700730782,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,8 +48,30 @@\n   }\n };\n \n /**\n+ * Busca um EPI específico pelo seu ID.\n+ */\n+const getEpiById = async (req, res) => {\n+  try {\n+    const { id } = req.params;\n+    const epiRef = db.collection('epis').doc(id);\n+    const doc = await epiRef.get();\n+\n+    if (!doc.exists) {\n+      return res.status(404).json({ error: 'EPI não encontrado.' });\n+    }\n+\n+    return res.status(200).json({ id: doc.id, ...doc.data() });\n+  } catch (error) {\n+    console.error('Erro ao buscar EPI por ID:', error);\n+    return res\n+      .status(500)\n+      .json({ error: 'Erro interno do servidor ao buscar EPI.' });\n+  }\n+};\n+\n+/**\n  * Atualiza um EPI existente no Firestore.\n  */\n const updateEpi = async (req, res) => {\n   try {\n@@ -94,7 +116,8 @@\n \n module.exports = {\n   createEpi,\n   getAllEpis,\n+  getEpiById,\n   updateEpi,\n   deleteEpi,\n };\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1759699050781,
+            "name": "Commit-0",
+            "content": "const { db } = require('../config/firebase');\n\n/**\n * Cria um novo Equipamento de Proteção Individual (EPI) no Firestore.\n */\nconst createEpi = async (req, res) => {\n  try {\n    const { nome, ca, validade, quantidade } = req.body;\n\n    // Validação básica dos campos recebidos\n    if (!nome || !ca || !validade || quantidade === undefined) {\n      return res.status(400).json({\n        error: 'Todos os campos são obrigatórios: nome, ca, validade, quantidade.',\n      });\n    }\n\n    const epiData = {\n      nome,\n      ca,\n      validade, // A data de validade, ex: \"2028-12-31\"\n      quantidade: Number(quantidade), // Garante que a quantidade seja um número\n      createdAt: new Date().toISOString(),\n    };\n\n    const epiRef = await db.collection('epis').add(epiData);\n\n    return res.status(201).json({ id: epiRef.id, ...epiData });\n  } catch (error) {\n    console.error('Erro ao criar EPI:', error);\n    return res.status(500).json({ error: 'Erro interno do servidor ao criar EPI.' });\n  }\n};\n\nmodule.exports = {\n  createEpi,\n};"
+        }
+    ]
+}

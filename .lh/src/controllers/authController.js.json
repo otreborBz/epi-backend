@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/controllers/authController.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1759693762039,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1759693762039,
+            "name": "Commit-0",
+            "content": "const axios = require('axios');\n\nconst login = async (req, res) => {\n  const { email, password } = req.body;\n\n  if (!email || !password) {\n    return res.status(400).json({ error: 'Email e senha são obrigatórios.' });\n  }\n\n  const apiKey = process.env.FIREBASE_WEB_API_KEY;\n  if (!apiKey) {\n    console.error('A variável de ambiente FIREBASE_WEB_API_KEY não está definida.');\n    return res.status(500).json({ error: 'Erro de configuração no servidor.' });\n  }\n\n  const firebaseAuthUrl = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`;\n\n  try {\n    const response = await axios.post(firebaseAuthUrl, {\n      email,\n      password,\n      returnSecureToken: true,\n    });\n    return res.status(200).json(response.data);\n  } catch (error) {\n    const errorMessage = error.response?.data?.error?.message || 'Erro de autenticação.';\n    return res.status(401).json({ error: errorMessage });\n  }\n};\n\nconst register = async (req, res) => {\n  const { email, password } = req.body;\n\n  if (!email || !password) {\n    return res.status(400).json({ error: 'Email e senha são obrigatórios.' });\n  }\n\n  const apiKey = process.env.FIREBASE_WEB_API_KEY;\n  if (!apiKey) {\n    console.error('A variável de ambiente FIREBASE_WEB_API_KEY não está definida.');\n    return res.status(500).json({ error: 'Erro de configuração no servidor.' });\n  }\n\n  const firebaseAuthUrl = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`;\n\n  try {\n    const response = await axios.post(firebaseAuthUrl, {\n      email,\n      password,\n      returnSecureToken: true,\n    });\n    return res.status(201).json(response.data);\n  } catch (error) {\n    const errorMessage = error.response?.data?.error?.message || 'Erro ao registrar usuário.';\n    return res.status(400).json({ error: errorMessage });\n  }\n};\n\nmodule.exports = { login, register };"
+        }
+    ]
+}

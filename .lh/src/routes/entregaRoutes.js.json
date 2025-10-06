@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/routes/entregaRoutes.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1759702990540,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1759703531572,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,11 @@\n+const express = require('express');\n+const router = express.Router();\n+const entregaController = require('../controllers/entregaController');\n+\n+// Rota para registrar a entrega de um EPI a um colaborador\n+router.post('/', entregaController.createEntrega);\n+\n+// Rota para buscar todas as entregas de um colaborador específico\n+router.get('/colaborador/:colaboradorId', entregaController.getEntregasByColaborador);\n+\n+module.exports = router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1759703551486,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,5 @@\n \n // Rota para registrar a entrega de um EPI a um colaborador\n router.post('/', entregaController.createEntrega);\n \n-// Rota para buscar todas as entregas de um colaborador específico\n-router.get('/colaborador/:colaboradorId', entregaController.getEntregasByColaborador);\n-\n module.exports = router;\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1759702990540,
+            "name": "Commit-0",
+            "content": "const express = require('express');\nconst router = express.Router();\nconst entregaController = require('../controllers/entregaController');\n\n// Rota para registrar a entrega de um EPI a um colaborador\nrouter.post('/', entregaController.createEntrega);\n\nmodule.exports = router;"
+        }
+    ]
+}

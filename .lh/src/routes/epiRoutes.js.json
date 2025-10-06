@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/routes/epiRoutes.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1759699051352,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1759699668434,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,11 @@\n+const express = require('express');\n+const router = express.Router();\n+const epiController = require('../controllers/epiController');\n+\n+// Rota para criar um novo EPI\n+router.post('/', epiController.createEpi);\n+\n+// Rota para buscar todos os EPIs\n+router.get('/', epiController.getAllEpis);\n+\n+module.exports = router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1759699900568,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,17 @@\n+const express = require('express');\n+const router = express.Router();\n+const epiController = require('../controllers/epiController');\n+\n+// Rota para criar um novo EPI\n+router.post('/', epiController.createEpi);\n+\n+// Rota para buscar todos os EPIs\n+router.get('/', epiController.getAllEpis);\n+\n+// Rota para atualizar um EPI específico\n+router.put('/:id', epiController.updateEpi);\n+\n+// Rota para excluir um EPI específico\n+router.delete('/:id', epiController.deleteEpi);\n+\n+module.exports = router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1759700728837,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,20 @@\n+const express = require('express');\n+const router = express.Router();\n+const epiController = require('../controllers/epiController');\n+\n+// Rota para criar um novo EPI\n+router.post('/', epiController.createEpi);\n+\n+// Rota para buscar todos os EPIs\n+router.get('/', epiController.getAllEpis);\n+\n+// Rota para buscar um EPI específico por ID\n+router.get('/:id', epiController.getEpiById);\n+\n+// Rota para atualizar um EPI específico\n+router.put('/:id', epiController.updateEpi);\n+\n+// Rota para excluir um EPI específico\n+router.delete('/:id', epiController.deleteEpi);\n+\n+module.exports = router;\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1759699051352,
+            "name": "Commit-0",
+            "content": "const express = require('express');\nconst router = express.Router();\nconst epiController = require('../controllers/epiController');\n\n// Rota para criar um novo EPI\nrouter.post('/', epiController.createEpi);\n\nmodule.exports = router;"
+        }
+    ]
+}
