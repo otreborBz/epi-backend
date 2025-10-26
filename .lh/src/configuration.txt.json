@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 4,
+            "activePatchIndex": 18,
             "patches": [
                 {
                     "date": 1761177796993,
@@ -24,6 +24,62 @@
                 {
                     "date": 1761177846984,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,3 @@\n+criar o arquivo serviceAccountKey.json\n+pegar no firebase os dados\n+rodar o nom install\n"
+                },
+                {
+                    "date": 1761453350700,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,3 @@\n-criar o arquivo serviceAccountKey.json\n-pegar no firebase os dados\n-rodar o nom install\n-criar o arquivo serviceAccountKey.json\n-pegar no firebase os dados\n-criar o arquivo serviceAccountKey\n-criar o arquivo service\n\\ No newline at end of file\n+criar o arquivo serviceAccountKey.json\r\n+\r\n+rodar o npm install\r\n"
+                },
+                {
+                    "date": 1761453358716,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,4 @@\n+criar o arquivo serviceAccountKey.json, pegar no firebase os dados\r\n+\r\n+\r\n+rodar o npm install\r\n"
+                },
+                {
+                    "date": 1761453364301,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,2 @@\n+criar o arquivo serviceAccountKey.json, pegar no firebase os dado\r\n+rodar o npm install\r\n"
+                },
+                {
+                    "date": 1761453369845,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,3 @@\n+criar o arquivo serviceAccountKey.json, pegar no firebase os dado\r\n+crie\r\n+rodar o npm install\r\n"
+                },
+                {
+                    "date": 1761453380697,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,3 @@\n+criar o arquivo serviceAccountKey.json, pegar no firebase os dado\r\n+criar o caminho servic\r\n+rodar o npm install\r\n"
+                },
+                {
+                    "date": 1761453385950,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,3 @@\n+criar o arquivo serviceAccountKey.json, pegar no firebase os dado\r\n+criar o caminho serviceAccountKey.json \r\n+rodar o npm install\r\n"
+                },
+                {
+                    "date": 1761453392095,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,3 @@\n+criar o arquivo serviceAccountKey.json, pegar no firebase os dado\r\n+criar o caminho serviceAccountKey.json no ponto \r\n+rodar o npm install\r\n"
+                },
+                {
+                    "date": 1761453398565,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,3 @@\n+criar o arquivo serviceAccountKey.json, pegar no firebase os dado\r\n+criar o caminho serviceAccountKey.json no .<i class=\"fa fa-envelope\" aria-hidden=\"true\"></i>\r\n+rodar o npm install\r\n"
+                },
+                {
+                    "date": 1761453426167,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,24 +1,4 @@\n criar o arquivo serviceAccountKey.json, pegar no firebase os dado\r\n-criar o caminho serviceAccountKey.json no .<i class=\"fa fa-envelope\" aria-hidden=\"true\"></i>\r\n-rodar o npm install\r\n-criar o arquivo serviceAccountKey.json, pegar no firebase os dado\r\n-criar o caminho serviceAccountKey.json no ponto \r\n-rodar o npm install\r\n-criar o arquivo serviceAccountKey.json, pegar no firebase os dado\r\n-criar o caminho serviceAccountKey.json \r\n-rodar o npm install\r\n-criar o arquivo serviceAccountKey.json, pegar no firebase os dado\r\n-criar o caminho servic\r\n-rodar o npm install\r\n-criar o arquivo serviceAccountKey.json, pegar no firebase os dado\r\n-crie\r\n-rodar o npm install\r\n-criar o arquivo serviceAccountKey.json, pegar no firebase os dado\r\n-rodar o npm install\r\n-criar o arquivo serviceAccountKey.json, pegar no firebase os dados\r\n+criar o caminho serviceAccountKey.json no .env\r\n \r\n-\r\n rodar o npm install\r\n-criar o arquivo serviceAccountKey.json\r\n-\r\n-rodar o npm install\r\n"
+                },
+                {
+                    "date": 1761453449966,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,4 @@\n criar o arquivo serviceAccountKey.json, pegar no firebase os dado\r\n-criar o caminho serviceAccountKey.json no .env\r\n-\r\n+criar a variavel  serviceAccountKey.json no .env\r\n+GOOGLE_APPLICATION_CREDENTIALS=\"C:\\Users\\RobertoCavalho\\Desktop\\epi-backend\\serviceAccountKey.json\"\r\n rodar o npm install\r\n"
+                },
+                {
+                    "date": 1761453455746,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,4 @@\n+criar o arquivo serviceAccountKey.json, pegar no firebase os dado\r\n+criar a variavel GOOGLE_APPLICATION_CREDENTIALS com o caminho do arquivo serviceAccountKey.json no .env\r\n+GOOGLE_APPLICATION_CREDENTIALS=\"C:\\Users\\RobertoCavalho\\Desktop\\epi-backend\\serviceAccountKey.json\"\r\n+rodar o npm install\r\n"
+                },
+                {
+                    "date": 1761453463963,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,4 @@\n+#criar o arquivo serviceAccountKey.json, pegar no firebase os dado\r\n+criar a variavel GOOGLE_APPLICATION_CREDENTIALS com o caminho do arquivo serviceAccountKey.json no .env\r\n+GOOGLE_APPLICATION_CREDENTIALS=\"C:\\Users\\RobertoCavalho\\Desktop\\epi-backend\\serviceAccountKey.json\"\r\n+rodar o npm install\r\n"
+                },
+                {
+                    "date": 1761453469605,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,5 @@\n+#criar o arquivo serviceAccountKey.json, \r\n+pegar no firebase os dado\r\n+criar a variavel GOOGLE_APPLICATION_CREDENTIALS com o caminho do arquivo serviceAccountKey.json no .env\r\n+GOOGLE_APPLICATION_CREDENTIALS=\"C:\\Users\\RobertoCavalho\\Desktop\\epi-backend\\serviceAccountKey.json\"\r\n+rodar o npm install\r\n"
+                },
+                {
+                    "date": 1761453477222,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,5 @@\n #criar o arquivo serviceAccountKey.json, \r\n-pegar no firebase os dado\r\n-criar a variavel GOOGLE_APPLICATION_CREDENTIALS com o caminho do arquivo serviceAccountKey.json no .env\r\n+  pegar no firebase os dado\r\n+#criar a variavel GOOGLE_APPLICATION_CREDENTIALS com o caminho do arquivo serviceAccountKey.json no .env\r\n GOOGLE_APPLICATION_CREDENTIALS=\"C:\\Users\\RobertoCavalho\\Desktop\\epi-backend\\serviceAccountKey.json\"\r\n rodar o npm install\r\n-#criar o arquivo serviceAccountKey.json, pegar no firebase os dado\r\n-criar a variavel GOOGLE_APPLICATION_CREDENTIALS com o caminho do arquivo serviceAccountKey.json no .env\r\n-GOOGLE_APPLICATION_CREDENTIALS=\"C:\\Users\\RobertoCavalho\\Desktop\\epi-backend\\serviceAccountKey.json\"\r\n-rodar o npm install\r\n-criar o arquivo serviceAccountKey.json, pegar no firebase os dado\r\n-criar a variavel GOOGLE_APPLICATION_CREDENTIALS com o caminho do arquivo serviceAccountKey.json no .env\r\n-GOOGLE_APPLICATION_CREDENTIALS=\"C:\\Users\\RobertoCavalho\\Desktop\\epi-backend\\serviceAccountKey.json\"\r\n-rodar o npm install\r\n-criar o arquivo serviceAccountKey.json, pegar no firebase os dado\r\n-criar a variavel  serviceAccountKey.json no .env\r\n-GOOGLE_APPLICATION_CREDENTIALS=\"C:\\Users\\RobertoCavalho\\Desktop\\epi-backend\\serviceAccountKey.json\"\r\n-rodar o npm install\r\n"
                 }
             ],
             "date": 1761177796993,

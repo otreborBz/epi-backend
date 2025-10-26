@@ -1,3 +1,5 @@
-criar o arquivo serviceAccountKey.json
-pegar no firebase os dados
+#criar o arquivo serviceAccountKey.json, 
+  pegar no firebase os dado
+#criar a variavel GOOGLE_APPLICATION_CREDENTIALS com o caminho do arquivo serviceAccountKey.json no .env
+  GOOGLE_APPLICATION_CREDENTIALS="C:\Users\RobertoCavalho\Desktop\epi-backend\serviceAccountKey.json"
 rodar o npm install
