@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/authMiddleware.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1761457024600,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1761457024600,
+            "name": "Commit-0",
+            "content": "const { admin } = require('../config/firebase');\n\n/**\n * Middleware para verificar o token JWT do Firebase enviado no cabeçalho Authorization.\n * Se o token for válido, o usuário decodificado é adicionado a `req.user`.\n */\nconst verifyToken = async (req, res, next) => {\n  const authHeader = req.headers.authorization;\n\n  if (!authHeader || !authHeader.startsWith('Bearer ')) {\n    return res.status(401).json({ error: 'Não autorizado. Token não fornecido ou em formato inválido.' });\n  }\n\n  const idToken = authHeader.split('Bearer ')[1];\n\n  try {\n    // Verifica o token usando o Firebase Admin SDK\n    const decodedToken = await admin.auth().verifyIdToken(idToken);\n    \n    // Adiciona as informações do usuário à requisição para uso posterior\n    req.user = decodedToken;\n    \n    // Continua para a próxima função (o controller da rota)\n    next();\n  } catch (error) {\n    console.error('Erro ao verificar o token:', error);\n    return res.status(403).json({ error: 'Token inválido ou expirado.' });\n  }\n};\n\nmodule.exports = { verifyToken };"
+        }
+    ]
+}

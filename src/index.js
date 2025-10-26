@@ -10,6 +10,8 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 
+// Importa o middleware de autenticação
+const { verifyToken } = require('./authMiddleware/authMiddleware');
 // Importa as rotas
 const authRoutes = require('./routes/authRoutes');
 const epiRoutes = require('./routes/epiRoutes');
@@ -42,11 +44,14 @@ app.get('/', (req, res) => {
 });
 
 // --- Rotas da Aplicação ---
+// Rota pública para login e registro
 app.use('/api/auth', authRoutes);
-app.use('/api/epis', epiRoutes);
-app.use('/api/colaboradores', colaboradorRoutes);
-app.use('/api/entregas', entregaRoutes);
-app.use('/api/dashboard', dashboardRoutes);
+
+// Rotas protegidas que exigem um token válido
+app.use('/api/epis', verifyToken, epiRoutes);
+app.use('/api/colaboradores', verifyToken, colaboradorRoutes);
+app.use('/api/entregas', verifyToken, entregaRoutes);
+app.use('/api/dashboard', verifyToken, dashboardRoutes);
 
 // Porta do servidor
 const PORT = process.env.PORT || 8081;
