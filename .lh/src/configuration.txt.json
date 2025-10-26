@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 18,
+            "activePatchIndex": 21,
             "patches": [
                 {
                     "date": 1761177796993,
@@ -80,6 +80,18 @@
                 {
                     "date": 1761453477222,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,5 @@\n #criar o arquivo serviceAccountKey.json, \r\n-pegar no firebase os dado\r\n-criar a variavel GOOGLE_APPLICATION_CREDENTIALS com o caminho do arquivo serviceAccountKey.json no .env\r\n+  pegar no firebase os dado\r\n+#criar a variavel GOOGLE_APPLICATION_CREDENTIALS com o caminho do arquivo serviceAccountKey.json no .env\r\n GOOGLE_APPLICATION_CREDENTIALS=\"C:\\Users\\RobertoCavalho\\Desktop\\epi-backend\\serviceAccountKey.json\"\r\n rodar o npm install\r\n-#criar o arquivo serviceAccountKey.json, pegar no firebase os dado\r\n-criar a variavel GOOGLE_APPLICATION_CREDENTIALS com o caminho do arquivo serviceAccountKey.json no .env\r\n-GOOGLE_APPLICATION_CREDENTIALS=\"C:\\Users\\RobertoCavalho\\Desktop\\epi-backend\\serviceAccountKey.json\"\r\n-rodar o npm install\r\n-criar o arquivo serviceAccountKey.json, pegar no firebase os dado\r\n-criar a variavel GOOGLE_APPLICATION_CREDENTIALS com o caminho do arquivo serviceAccountKey.json no .env\r\n-GOOGLE_APPLICATION_CREDENTIALS=\"C:\\Users\\RobertoCavalho\\Desktop\\epi-backend\\serviceAccountKey.json\"\r\n-rodar o npm install\r\n-criar o arquivo serviceAccountKey.json, pegar no firebase os dado\r\n-criar a variavel  serviceAccountKey.json no .env\r\n-GOOGLE_APPLICATION_CREDENTIALS=\"C:\\Users\\RobertoCavalho\\Desktop\\epi-backend\\serviceAccountKey.json\"\r\n-rodar o npm install\r\n"
+                },
+                {
+                    "date": 1761454255498,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n #criar o arquivo serviceAccountKey.json, \r\n   pegar no firebase os dado\r\n #criar a variavel GOOGLE_APPLICATION_CREDENTIALS com o caminho do arquivo serviceAccountKey.json no .env\r\n-GOOGLE_APPLICATION_CREDENTIALS=\"C:\\Users\\RobertoCavalho\\Desktop\\epi-backend\\serviceAccountKey.json\"\r\n+  GOOGLE_APPLICATION_CREDENTIALS=\"C:\\Users\\RobertoCavalho\\Desktop\\epi-backend\\serviceAccountKey.json\"\r\n+  \r\n rodar o npm install\r\n"
+                },
+                {
+                    "date": 1761454260991,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,5 +2,5 @@\n   pegar no firebase os dado\r\n #criar a variavel GOOGLE_APPLICATION_CREDENTIALS com o caminho do arquivo serviceAccountKey.json no .env\r\n   GOOGLE_APPLICATION_CREDENTIALS=\"C:\\Users\\RobertoCavalho\\Desktop\\epi-backend\\serviceAccountKey.json\"\r\n #c\r\n-rodar o npm install\r\n\\ No newline at end of file\n+rodar o npm install\r\n"
+                },
+                {
+                    "date": 1761454271561,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,6 @@\n+#criar o arquivo serviceAccountKey.json, \r\n+  pegar no firebase os dado\r\n+#criar a variavel GOOGLE_APPLICATION_CREDENTIALS com o caminho do arquivo serviceAccountKey.json no .env\r\n+  GOOGLE_APPLICATION_CREDENTIALS=\"C:\\Users\\RobertoCavalho\\Desktop\\epi-backend\\serviceAccountKey.json\"\r\n+#criar tam\r\n+rodar o npm install\r\n"
                 }
             ],
             "date": 1761177796993,
