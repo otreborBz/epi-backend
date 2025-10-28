@@ -2,9 +2,9 @@ const { db } = require('../config/firebase');
 
 const createColaborador = async (req, res) => {
   try {
-    const { nome, RE, data_admissao, setor, funcao } = req.body;
+    const { nome, re, data_admissao, setor, funcao } = req.body;
 
-    if (!nome || !RE || !data_admissao || !setor || !funcao) {
+    if (!nome || !re || !data_admissao || !setor || !funcao) {
       return res.status(400).json({
         error: 'Todos os campos são obrigatórios: nome, RE, data_admissao, setor, funcao.',
       });
@@ -12,11 +12,12 @@ const createColaborador = async (req, res) => {
 
     const colaboradorData = {
       nome,
-      RE,
+      re,
       data_admissao,
       setor,
       funcao,
       createdAt: new Date().toISOString(),
+      uid: req.user.uid, // <-- adiciona UID do usuário logado
     };
 
     const colaboradorRef = await db.collection('colaboradores').add(colaboradorData);
@@ -28,17 +29,24 @@ const createColaborador = async (req, res) => {
   }
 };
 
+
 const getAllColaboradores = async (req, res) => {
   try {
-    const snapshot = await db.collection('colaboradores').get();
+    const snapshot = await db
+      .collection('colaboradores')
+      .where('uid', '==', req.user.uid)
+      .get();
+
     const colaboradores = [];
     snapshot.forEach(doc => colaboradores.push({ id: doc.id, ...doc.data() }));
+
     return res.status(200).json(colaboradores);
   } catch (error) {
     console.error('Erro ao buscar colaboradores:', error);
     return res.status(500).json({ error: 'Erro interno do servidor ao buscar colaboradores.' });
   }
 };
+
 
 const getColaboradorById = async (req, res) => {
   try {
