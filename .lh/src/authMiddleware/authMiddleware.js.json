@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/authMiddleware/authMiddleware.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1761609306631,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1761609462716,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n const { auth } = require('../config/firebase');\r\n \r\n-const verifyFirebaseToken = async (req, res, next) => {\r\n+const verifyToken = async (req, res, next) => {\r\n   const header = req.headers.authorization;\r\n \r\n   if (!header || !header.startsWith('Bearer ')) {\r\n     return res.status(403).json({ error: 'Token ausente' });\r\n@@ -10,13 +10,13 @@\n   const idToken = header.split('Bearer ')[1];\r\n \r\n   try {\r\n     const decodedToken = await auth.verifyIdToken(idToken);\r\n-    req.user = decodedToken; // uid, email e outros dados do usuário\r\n+    req.user = decodedToken;\r\n     next();\r\n   } catch (error) {\r\n-    console.error('❌ Token inválido ou expirado:', error.message);\r\n+    console.error('Token inválido ou expirado:', error.message);\r\n     return res.status(403).json({ error: 'Token inválido ou expirado.' });\r\n   }\r\n };\r\n \r\n-module.exports = verifyFirebaseToken;\r\n+module.exports = { verifyToken };\r\n"
+                }
+            ],
+            "date": 1761609306631,
+            "name": "Commit-0",
+            "content": "const { auth } = require('../config/firebase');\r\n\r\nconst verifyFirebaseToken = async (req, res, next) => {\r\n  const header = req.headers.authorization;\r\n\r\n  if (!header || !header.startsWith('Bearer ')) {\r\n    return res.status(403).json({ error: 'Token ausente' });\r\n  }\r\n\r\n  const idToken = header.split('Bearer ')[1];\r\n\r\n  try {\r\n    const decodedToken = await auth.verifyIdToken(idToken);\r\n    req.user = decodedToken; // uid, email e outros dados do usuário\r\n    next();\r\n  } catch (error) {\r\n    console.error('❌ Token inválido ou expirado:', error.message);\r\n    return res.status(403).json({ error: 'Token inválido ou expirado.' });\r\n  }\r\n};\r\n\r\nmodule.exports = verifyFirebaseToken;\r\n"
+        }
+    ]
+}

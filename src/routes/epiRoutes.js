@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const epiController = require('../controllers/epiController');
 
+router.get('/teste', epiController.teste)
+
 // Rota para criar um novo EPI
 router.post('/', epiController.createEpi);
 
@@ -16,5 +18,7 @@ router.put('/:id', epiController.updateEpi);
 
 // Rota para excluir um EPI específico
 router.delete('/:id', epiController.deleteEpi);
+
+
 
 module.exports = router;

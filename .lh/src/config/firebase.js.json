@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 5,
+            "activePatchIndex": 8,
             "patches": [
                 {
                     "date": 1759505668733,
@@ -28,6 +28,18 @@
                 {
                     "date": 1759686702138,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,15 @@\n-var admin = require(\"firebase-admin\");\n+const admin = require('firebase-admin');\n \n-var serviceAccount = require(\"path/to/serviceAccountKey.json\");\n+// O SDK irá procurar a variável de ambiente GOOGLE_APPLICATION_CREDENTIALS\n+// que você definiu no seu arquivo .env para encontrar o serviceAccountKey.json\n+try {\n+  admin.initializeApp();\n+  console.log('✅ Firebase Admin SDK inicializado com sucesso.');\n+} catch (error) {\n+  console.error('Erro ao inicializar o Firebase Admin SDK:', error);\n+  // Se a inicialização falhar, o aplicativo não deve continuar.\n+  process.exit(1);\n+}\n \n-admin.initializeApp({\n-  credential: admin.credential.cert(serviceAccount)\n-});\n+const db = admin.firestore();\n+module.exports = { admin, db };\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1761609239485,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,11 @@\n-const admin = require('firebase-admin');\n-\n-// O SDK irá procurar a variável de ambiente GOOGLE_APPLICATION_CREDENTIALS\n-// que você definiu no seu arquivo .env para encontrar o serviceAccountKey.json\n-try {\n-  admin.initializeApp();\n-  console.log('✅ Firebase Admin SDK inicializado com sucesso.');\n-} catch (error) {\n-  console.error('Erro ao inicializar o Firebase Admin SDK:', error);\n-  // Se a inicialização falhar, o aplicativo não deve continuar.\n-  process.exit(1);\n-}\n-\n-const db = admin.firestore();\n-module.exports = { admin, db };\n\\ No newline at end of file\n+const admin = require('firebase-admin');\r\n+const serviceAccount = require('./serviceAccountKey.json'); // seu arquivo JSON do Firebase\r\n+\r\n+admin.initializeApp({\r\n+  credential: admin.credential.cert(serviceAccount),\r\n+});\r\n+\r\n+const db = admin.firestore();\r\n+const auth = admin.auth();\r\n+\r\n+module.exports = { db, auth };\r\n"
+                },
+                {
+                    "date": 1761609248283,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,15 @@\n const admin = require('firebase-admin');\r\n-const serviceAccount = require('./serviceAccountKey.json'); // seu arquivo JSON do Firebase\r\n \r\n-admin.initializeApp({\r\n-  credential: admin.credential.cert(serviceAccount),\r\n-});\r\n+// O SDK irá procurar a variável de ambiente GOOGLE_APPLICATION_CREDENTIALS\r\n+// que você definiu no seu arquivo .env para encontrar o serviceAccountKey.json\r\n+try {\r\n+  admin.initializeApp();\r\n+  console.log('✅ Firebase Admin SDK inicializado com sucesso.');\r\n+} catch (error) {\r\n+  console.error('Erro ao inicializar o Firebase Admin SDK:', error);\r\n+  // Se a inicialização falhar, o aplicativo não deve continuar.\r\n+  process.exit(1);\r\n+}\r\n \r\n const db = admin.firestore();\r\n-const auth = admin.auth();\r\n-\r\n-module.exports = { db, auth };\r\n+module.exports = { admin, db };\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1761609297508,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,20 @@\n const admin = require('firebase-admin');\r\n+const path = require('path');\r\n \r\n-// O SDK irá procurar a variável de ambiente GOOGLE_APPLICATION_CREDENTIALS\r\n-// que você definiu no seu arquivo .env para encontrar o serviceAccountKey.json\r\n+// Caminho para o arquivo serviceAccountKey.json\r\n+const serviceAccountPath = process.env.GOOGLE_APPLICATION_CREDENTIALS || path.join(__dirname, 'serviceAccountKey.json');\r\n+\r\n try {\r\n-  admin.initializeApp();\r\n+  admin.initializeApp({\r\n+    credential: admin.credential.cert(serviceAccountPath),\r\n+  });\r\n   console.log('✅ Firebase Admin SDK inicializado com sucesso.');\r\n } catch (error) {\r\n\\ No newline at end of file\n-  console.error('Erro ao inicializar o Firebase Admin SDK:', error);\r\n-  // Se a inicialização falhar, o aplicativo não deve continuar.\r\n+  console.error('❌ Erro ao inicializar o Firebase Admin SDK:', error);\r\n   process.exit(1);\r\n }\r\n \r\n const db = admin.firestore();\r\n-module.exports = { admin, db };\n+const auth = admin.auth();\r\n+\r\n+module.exports = { admin, db, auth };\r\n"
                 }
             ],
             "date": 1759505668733,

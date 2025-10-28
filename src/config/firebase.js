@@ -1,15 +1,20 @@
 const admin = require('firebase-admin');
+const path = require('path');
 
-// O SDK irá procurar a variável de ambiente GOOGLE_APPLICATION_CREDENTIALS
-// que você definiu no seu arquivo .env para encontrar o serviceAccountKey.json
+// Caminho para o arquivo serviceAccountKey.json
+const serviceAccountPath = process.env.GOOGLE_APPLICATION_CREDENTIALS || path.join(__dirname, 'serviceAccountKey.json');
+
 try {
-  admin.initializeApp();
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccountPath),
+  });
   console.log('✅ Firebase Admin SDK inicializado com sucesso.');
 } catch (error) {
-  console.error('Erro ao inicializar o Firebase Admin SDK:', error);
-  // Se a inicialização falhar, o aplicativo não deve continuar.
+  console.error('❌ Erro ao inicializar o Firebase Admin SDK:', error);
   process.exit(1);
 }
 
 const db = admin.firestore();
-module.exports = { admin, db };
+const auth = admin.auth();
+
+module.exports = { admin, db, auth };

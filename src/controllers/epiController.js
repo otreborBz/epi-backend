@@ -1,6 +1,20 @@
 const { db } = require('../config/firebase');
 
 /**
+ * Rota de teste.
+ */
+const teste = async (req, res) => {
+  try {
+    res.status(200).json({ message: 'API EPI-Backend teste!' });
+    return res.status(200).json({ message: 'API EPI-Backend rota de teste!' });
+  }
+  catch (error) {
+    console.error('Erro ao teste:', error);
+    return res.status(500).json({ error: 'Erro interno do servidor.' });
+  }
+};
+
+/**
  * Cria um novo Equipamento de Proteção Individual (EPI) no Firestore.
  */
 const createEpi = async (req, res) => {
@@ -104,9 +118,7 @@ const updateEpi = async (req, res) => {
 const deleteEpi = async (req, res) => {
   try {
     const { id } = req.params;
-
     await db.collection('epis').doc(id).delete();
-
     return res.status(200).json({ message: 'EPI excluído com sucesso.' });
   } catch (error) {
     console.error('Erro ao excluir EPI:', error);
@@ -114,10 +126,13 @@ const deleteEpi = async (req, res) => {
   }
 };
 
+
+
 module.exports = {
   createEpi,
   getAllEpis,
   getEpiById,
   updateEpi,
   deleteEpi,
+  teste
 };

@@ -1,7 +1,14 @@
 #criar o arquivo serviceAccountKey.json, 
   pegar no firebase os dado
+
 #criar a variavel GOOGLE_APPLICATION_CREDENTIALS com o caminho do arquivo serviceAccountKey.json no .env
   GOOGLE_APPLICATION_CREDENTIALS="C:\Users\RobertoCavalho\Desktop\epi-backend\serviceAccountKey.json"
+
 #criar tambem a variavel com a chave da api da web
   FIREBASE_WEB_API_KEY= AQUI VAI A CHAVE DA API.
-rodar o npm install
+
+#rodar
+ npm install
+
+#Iniciar projeto
+ npm run dev

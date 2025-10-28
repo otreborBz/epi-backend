@@ -1,8 +1,5 @@
 const { db } = require('../config/firebase');
 
-/**
- * Cria um novo colaborador no Firestore.
- */
 const createColaborador = async (req, res) => {
   try {
     const { nome, RE, data_admissao, setor, funcao } = req.body;
@@ -31,16 +28,11 @@ const createColaborador = async (req, res) => {
   }
 };
 
-/**
- * Busca todos os colaboradores no Firestore.
- */
 const getAllColaboradores = async (req, res) => {
   try {
     const snapshot = await db.collection('colaboradores').get();
     const colaboradores = [];
-    snapshot.forEach(doc => {
-      colaboradores.push({ id: doc.id, ...doc.data() });
-    });
+    snapshot.forEach(doc => colaboradores.push({ id: doc.id, ...doc.data() }));
     return res.status(200).json(colaboradores);
   } catch (error) {
     console.error('Erro ao buscar colaboradores:', error);
@@ -48,17 +40,12 @@ const getAllColaboradores = async (req, res) => {
   }
 };
 
-/**
- * Busca um colaborador específico pelo seu ID.
- */
 const getColaboradorById = async (req, res) => {
   try {
     const { id } = req.params;
     const doc = await db.collection('colaboradores').doc(id).get();
 
-    if (!doc.exists) {
-      return res.status(404).json({ error: 'Colaborador não encontrado.' });
-    }
+    if (!doc.exists) return res.status(404).json({ error: 'Colaborador não encontrado.' });
 
     return res.status(200).json({ id: doc.id, ...doc.data() });
   } catch (error) {
@@ -67,9 +54,6 @@ const getColaboradorById = async (req, res) => {
   }
 };
 
-/**
- * Atualiza um colaborador existente no Firestore.
- */
 const updateColaborador = async (req, res) => {
   try {
     const { id } = req.params;
@@ -77,7 +61,6 @@ const updateColaborador = async (req, res) => {
     const colaboradorRef = db.collection('colaboradores').doc(id);
 
     await colaboradorRef.update(data);
-
     return res.status(200).json({ message: 'Colaborador atualizado com sucesso.' });
   } catch (error) {
     console.error('Erro ao atualizar colaborador:', error);
@@ -85,31 +68,17 @@ const updateColaborador = async (req, res) => {
   }
 };
 
-/**
- * Exclui um colaborador e todos os seus registros de entrega do Firestore.
- */
 const deleteColaborador = async (req, res) => {
   try {
     const { id } = req.params;
 
-    // 1. Encontrar todos os registros de entrega para este colaborador
     const entregasSnapshot = await db.collection('entregas').where('colaboradorId', '==', id).get();
-
-    // 2. Usar um batch para deletar todos os documentos em uma única operação
     const batch = db.batch();
 
-    // Adicionar cada entrega ao batch para exclusão
-    entregasSnapshot.forEach(doc => {
-      batch.delete(doc.ref);
-    });
+    entregasSnapshot.forEach(doc => batch.delete(doc.ref));
+    batch.delete(db.collection('colaboradores').doc(id));
 
-    // 3. Adicionar o próprio colaborador ao batch para exclusão
-    const colaboradorRef = db.collection('colaboradores').doc(id);
-    batch.delete(colaboradorRef);
-
-    // 4. Executar o batch
     await batch.commit();
-
     return res.status(200).json({ message: 'Colaborador e seus registros de entrega foram excluídos com sucesso.' });
   } catch (error) {
     console.error('Erro ao excluir colaborador e suas entregas:', error);
