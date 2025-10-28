@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 26,
+            "activePatchIndex": 28,
             "patches": [
                 {
                     "date": 1759699050781,
@@ -112,6 +112,14 @@
                 {
                     "date": 1761608850666,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n  */\r\n const teste = async (req, res) => {\r\n   try {\r\n     res.status(200).json({ message: 'API EPI-Backend teste!' });\r\n+    return res.status(200).json({ message: 'API EPI-Backend rota de teste!' });\r\n   }\r\n   catch (error) {\r\n     console.error('Erro ao teste:', error);\r\n     return res.status(500).json({ error: 'Erro interno do servidor.' });\r\n"
+                },
+                {
+                    "date": 1761689054814,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,13 +27,23 @@\n         error: 'Todos os campos são obrigatórios: nome, ca, validade, quantidade.',\r\n       });\r\n     }\r\n \r\n+    const quantidadeInt = parseInt(quantidade, 10);\r\n+\r\n+    // Validação para garantir que a quantidade é um número inteiro não negativo\r\n+    if (isNaN(quantidadeInt) || quantidadeInt < 0 || String(quantidadeInt) !== String(quantidade).trim()) {\r\n+      return res.status(400).json({\r\n+        error: 'O campo \"quantidade\" deve ser um número inteiro não negativo.',\r\n+      });\r\n+    }\r\n+\r\n     const epiData = {\r\n       nome,\r\n       ca,\r\n       validade, // A data de validade, ex: \"2028-12-31\"\r\n       quantidade: Number(quantidade), // Garante que a quantidade seja um número\r\n+      quantidade: quantidadeInt, // Garante que a quantidade seja um número inteiro\r\n       createdAt: new Date().toISOString(),\r\n     };\r\n \r\n     const epiRef = await db.collection('epis').add(epiData);\r\n"
+                },
+                {
+                    "date": 1761689065386,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,23 +27,13 @@\n         error: 'Todos os campos são obrigatórios: nome, ca, validade, quantidade.',\r\n       });\r\n     }\r\n \r\n-    const quantidadeInt = parseInt(quantidade, 10);\r\n-\r\n-    // Validação para garantir que a quantidade é um número inteiro não negativo\r\n-    if (isNaN(quantidadeInt) || quantidadeInt < 0 || String(quantidadeInt) !== String(quantidade).trim()) {\r\n-      return res.status(400).json({\r\n-        error: 'O campo \"quantidade\" deve ser um número inteiro não negativo.',\r\n-      });\r\n-    }\r\n-\r\n     const epiData = {\r\n       nome,\r\n       ca,\r\n       validade, // A data de validade, ex: \"2028-12-31\"\r\n       quantidade: Number(quantidade), // Garante que a quantidade seja um número\r\n-      quantidade: quantidadeInt, // Garante que a quantidade seja um número inteiro\r\n       createdAt: new Date().toISOString(),\r\n     };\r\n \r\n     const epiRef = await db.collection('epis').add(epiData);\r\n"
                 }
             ],
             "date": 1759699050781,

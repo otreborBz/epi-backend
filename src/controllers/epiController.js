@@ -28,11 +28,20 @@ const createEpi = async (req, res) => {
       });
     }
 
+    const quantidadeInt = parseInt(quantidade, 10);
+
+    // Validação para garantir que a quantidade é um número inteiro não negativo
+    if (isNaN(quantidadeInt) || quantidadeInt < 0 || String(quantidadeInt) !== String(quantidade).trim()) {
+      return res.status(400).json({
+        error: 'O campo "quantidade" deve ser um número inteiro não negativo.',
+      });
+    }
+
     const epiData = {
       nome,
       ca,
       validade, // A data de validade, ex: "2028-12-31"
-      quantidade: Number(quantidade), // Garante que a quantidade seja um número
+      quantidade: quantidadeInt, // Garante que a quantidade seja um número inteiro
       createdAt: new Date().toISOString(),
     };
 
